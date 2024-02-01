@@ -44,7 +44,7 @@
                                     <div class="col-sm-5 mt-3">
 
                                         <!-- <nuxt-link to="/auth/login"> Login </nuxt-link> -->
-                                        <nuxt-link to="/auth/login" class="text-muted"><i class="mdi mdi-account-circle"></i>Login</nuxt-link>
+                                        <nuxt-link to="/" class="text-muted"><i class="mdi mdi-account-circle"></i>Login</nuxt-link>
                                     </div>
                                 </div>
                             </form>

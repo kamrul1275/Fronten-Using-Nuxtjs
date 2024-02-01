@@ -1,7 +1,12 @@
+
+
+<script setup lang="ts">
+// You might choose this based on an API call or logged-in status
+const layout = "custom";
+</script>
+
 <template>
- <NuxtLayout>
-
-<NuxtPage></NuxtPage>
-
- </NuxtLayout>
+  <NuxtLayout >
+    <NuxtPage />
+  </NuxtLayout>
 </template>

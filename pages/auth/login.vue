@@ -20,15 +20,15 @@
     
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input class="form-control" type="text" required="" placeholder="Username">
+                                        <input class="form-control" type="text" >
                                     </div>
                                 </div>
     
-                                <div class="form-group mb-3 row">
+                                <!-- <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input class="form-control" type="password" required="" placeholder="Password">
-                                    </div>
-                                </div>
+                                        <input class="form-control" type="password" >
+                                    </div
+                                </div> -->
     
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
@@ -67,9 +67,15 @@
         </div>
 </template>
 
-<script setup>
 
+<script setup lang="ts">
+definePageMeta({
+  layout: 'default'
+})
 </script>
+
+
+
 
 <style lang="scss" scoped>
 
