@@ -3,7 +3,7 @@
     <br>
 
 
-    <h1>User page</h1>
+    <h1>Permission page</h1>
 
 
     <div class="row">
@@ -34,13 +34,13 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Permission</th>
+                                    <th>Permission Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(permission, index)  in  permissions.data" :key="index">
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{ permission.id }}</th>
                                     <td> {{ permission.name }}</td>
                                 
                                     <td>

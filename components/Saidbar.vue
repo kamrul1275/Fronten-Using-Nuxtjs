@@ -63,7 +63,7 @@
                         <li> <nuxt-link to="/permission/create">Create permission </nuxt-link> </li>
                         <li> <nuxt-link to="/permission">All permission</nuxt-link> </li>
                     </ul>
-                </li>
+                </li> 
 
 
 
@@ -73,13 +73,13 @@
                         <span>Product</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li> <nuxt-link to="/permission/create">Create Product </nuxt-link> </li>
-                        <li> <nuxt-link to="/permission">All Product</nuxt-link> </li>
+                        <li> <nuxt-link to="/product/create">Create Product </nuxt-link> </li>
+                        <li> <nuxt-link to="/product">All Product</nuxt-link> </li>
                     </ul>
                 </li>
 
 
-
+<!-- 
                 <li>
                     <a href="" class="has-arrow waves-effect">
                         <i class="ri-mail-send-line"></i>
@@ -89,7 +89,7 @@
                         <li> <nuxt-link to="/permission/create">Create permission </nuxt-link> </li>
                         <li> <nuxt-link to="/permission">All permission</nuxt-link> </li>
                     </ul>
-                </li>
+                </li> -->
 
 
 
