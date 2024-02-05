@@ -17,13 +17,13 @@
 
                               <!-- loader -->
 
-                                <div v-if="isLoading" class="spinner-border text-info" role="status">
+                                <!-- <div v-if="isLoading" class="spinner-border text-info" role="status">
                                     <span class="visually-hidden">Loading...</span>
-                                    </div>
+                                    </div> -->
                                     <!-- end loader -->
 
 
-            <div v-else class="card ml-4">
+            <div  class="card ml-4">
                 <div class="card-body ml-3">
                     <h4 class="card-title"> Table</h4>
 
@@ -34,24 +34,24 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th> Name</th>
-                                    <th>Email</th>
+                                    <th>Role Name</th>
+                                    <th>Permission</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(User, index)  in  Users" :key="index">
+                                <tr v-for="(role, index)  in  roles.data" :key="index">
                                     <th scope="row">1</th>
-                                    <td> {{ User.name }}</td>
-                                    <td> {{ User.email }}</td>
+                                    <td> {{ role.name }}</td>
+                                   <td> permissions name </td> 
             
                                     <td>
 
                                
-<nuxt-link :to="`/user/${User.id}`" class="btn btn-success">  Edit </nuxt-link>
+<nuxt-link :to="`/user/${role.id}`" class="btn btn-success">  Edit </nuxt-link>
 <!-- <a href="" class="btn btn-danger">Delete</a> -->
 
-<button  @click.prevent="deleteUser(User.id)" class="btn btn-danger" >Delete</button>
+<button  @click.prevent="deleteUser(role.id)" class="btn btn-danger" >Delete</button>
 
 
 
@@ -98,7 +98,7 @@ export default {
     },
       isLoading:true,
       isLoadingTitle:'Loading...',
-      UserId:"",
+      roles:"",
 
   };
  },
@@ -117,14 +117,14 @@ this.getUsers();
   getUsers(){
 
     this.isLoading=true;
-    axios.get(`http://127.0.0.1:8000/api/user/info`)
+    axios.get(`http://127.0.0.1:8000/api/roles`)
         .then(res=>{
 
 
           this.isLoading=false;
 
-          this.Users = res.data.data;
-           console.log("All User",this.Users);
+          this.roles = res.data;
+           console.log("All Roles",this.roles);
   
 
 
@@ -139,16 +139,16 @@ this.getUsers();
 // delete User
 
 
-deleteUser(UserId){
+// deleteUser(UserId){
 
 
-if(confirm('are you sure')){
+// if(confirm('are you sure')){
 
-  axios.delete(`http://127.0.0.1:8000/api/user/delete/${UserId}`)
-  .then(res=>{
-  });
+//   axios.delete(`http://127.0.0.1:8000/api/user/delete/${UserId}`)
+//   .then(res=>{
+//   });
 
-}
+// }
 
     // this.isLoading=false;
 
@@ -163,9 +163,6 @@ if(confirm('are you sure')){
 
 
  }//end deleted
-
-}
-
 
 
 

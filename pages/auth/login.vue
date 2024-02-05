@@ -16,32 +16,35 @@
                         <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
     
                         <div class="p-3">
-                            <form class="form-horizontal mt-3" action="index.html">
+                            <form class="form-horizontal mt-3" @submit.prevent="handleSubmite()">
     
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input class="form-control" type="text" >
+                                        <input class="form-control" v-model="user.email" type="text" >
                                     </div>
+                                    <span v-if="errors.email" class="text-red-500">{{ errors.email[0] }}</span>
                                 </div>
     
-                                <!-- <div class="form-group mb-3 row">
+                             <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input class="form-control" type="password" >
-                                    </div
-                                </div> -->
+                                        <input class="form-control" v-model="user.password" type="password" >
+                                    </div>
+                                    <span v-if="errors.password" class="text-red-500">{{ errors.password[0] }}</span>
+                                </div> 
     
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="form-label ms-1" for="customCheck1">Remember me</label>
+                                            <label class="form-label ms-1" for="customCheck1">Remember me.....</label>
                                         </div>
                                     </div>
+                                    
                                 </div>
     
                                 <div class="form-group mb-3 text-center row mt-3 pt-1">
                                     <div class="col-12">
-                                        <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Log In</button>
+                                        <button class="btn btn-info w-100 waves-effect waves-light"  type="submit">Log In</button>
                                     </div>
                                 </div>
     
@@ -67,14 +70,50 @@
         </div>
 </template>
 
+<script setup>
 
-<script setup lang="ts">
+
+
+
 definePageMeta({
-  layout: 'default'
+  layout: 'custom'
 })
+
+const user = reactive({
+  email: "",
+  password: "",
+});
+
+const auth = useAuthStore();
+const token = useTokenStore();
+
+const errors = ref([]);
+
+const handleSubmite = async () => {
+
+    // alert(user.email);
+  try {
+
+    await auth.login(user);
+
+
+    // return navigateTo("/dashboard");
+    //console.log(auth.login);;
+  } catch (error) {
+console.log(error.data.errors);
+    // errors.value = error.data.errors;
+  };
+};
+
+
+
+
+
+
+
+
+
 </script>
-
-
 
 
 <style lang="scss" scoped>
