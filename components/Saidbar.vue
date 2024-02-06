@@ -29,7 +29,7 @@
 
              
     
-                <li>
+               <li>
                     <a href="" class="has-arrow waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>User</span>
@@ -50,7 +50,6 @@
                         <li> <nuxt-link to="/role">All Role</nuxt-link> </li>
                     </ul>
                 </li>
-
 
 
 
@@ -193,6 +192,17 @@ const auth = useAuthStore();
 
 </script>
 
-<style lang="scss" scoped>
+<style>
+
+
+#sidebar-menu{
+
+    height: 71vh;
+    overflow: auto;
+    /* border: 1px solid; */
+
+}
+
+
 
 </style>

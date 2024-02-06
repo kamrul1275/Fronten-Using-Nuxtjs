@@ -14,12 +14,8 @@
           <div class="row mb-3">
             <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
             <div class="col-sm-10">
-              <input v-model="Product.title"
-                class="form-control"
-                type="text"
-                placeholder="wrttie product"
-                id="example-text-input"
-              />
+              <input v-model="Product.title" class="form-control" type="text" placeholder="wrttie product"
+                id="example-text-input" />
             </div>
           </div>
           <!-- end row -->
@@ -27,19 +23,15 @@
           <div class="row mb-3">
             <label for="example-email-input" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
-              <input v-model="Product.price"
-                class="form-control"
-                type="text"
-                placeholder="price..."
-                id="example-email-input"
-              />
+              <input v-model="Product.price" class="form-control" type="text" placeholder="price..."
+                id="example-email-input" />
             </div>
           </div>
           <!-- end row -->
 
 
-          <div class="row mb-3">
-            <label for="example-email-input" class="col-sm-2 col-form-label">Price</label>
+          <!-- <div class="row mb-3">
+            <label for="example-email-input" class="col-sm-2 col-form-label">Image</label>
             <div class="col-sm-10">
               <input 
                 class="form-control"
@@ -48,9 +40,9 @@
                 id="example-email-input"
               />
             </div>
-          </div>
+          </div> -->
           <!-- end row -->
-      
+
           <!-- end row -->
           <button class="btn btn-info" @click.prevent="submiteProduct()">Submite</button>
 
@@ -82,14 +74,14 @@ export default {
 
         title: "",
         price: "",
-      
+
 
 
       },
 
 
-      isLoading:false,
-      isLoadingTitle:'Loading...',
+      isLoading: false,
+      isLoadingTitle: 'Loading...',
     };
   },
 
@@ -99,36 +91,37 @@ export default {
 
     submiteProduct() {
 
-        alert(this.Product.title);
-        console.log(this.Product.title);
-    
-        this.isLoading=true;
+      alert(this.Product.title);
+      console.log(this.Product.title);
 
-        this.isLoadingTitle="Saving....";
+      this.isLoading = true;
+
+      this.isLoadingTitle = "Saving....";
 
 
-        axios.post('http://127.0.0.1:8000/api/products',this.Product)
-        .then(res=>{
+      axios.post('http://127.0.0.1:8000/api/products', this.Product)
+        .then(res => {
 
           alert(' Product Create Succesfully');
-           console.log("Product_Info:",res);
-           this.Product.title="";
-           this.Product.price="";
-          
+          console.log("Product_Info:", res);
+          this.Product.title = "";
+          this.Product.price = "";
 
 
-           this.isLoading=false;
 
-          this.isLoadingTitle="loading....";
+
+          this.isLoading = false;
+
+          this.isLoadingTitle = "loading....";
 
 
         });
 
 
+    }
+
+
   }
-
-
-}
 }
 
 

@@ -16,6 +16,8 @@
                                <li class="breadcrumb-item active">Dashboard</li>
                                <br>
 
+ <!-- {{ useAuthStore().getUser.name }}  -->
+
 
                            </ol>
                        </div>
@@ -222,7 +224,7 @@
 
 <script>
 import axios from "axios";
-
+import {useAuthStore} from '@/stores/auth';
 
 definePageMeta({
   middleware: 'auth'
@@ -241,6 +243,8 @@ export default {
        RoleCount:"",
        ProductCount:"",
        PermissionCount:"",
+       name:"",
+       getUser:[],
     //    isLoading:true,
     //   isLoadingTitle:'Loading...',
     };

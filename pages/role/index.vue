@@ -41,7 +41,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="(role, index)  in  roles.data" :key="index">
-                                    <th scope="row">1</th>
+                                    <th scope="row"> {{ role.id }}</th>
                                     <td> {{ role.name }}</td>
                                    <td> permissions name </td> 
             

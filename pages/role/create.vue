@@ -48,7 +48,7 @@
             v-for="(permission, index) in permissions"
             :key="index"
           >
-            <input class="form-check-input" v-model="Role.permission[0]" type="checkbox" id="formCheck1" />
+            <input class="form-check-input" v-model="Role.permission.id" :value="Role.permission.id" type="checkbox" id="formCheck1" />
             <label class="form-check-label" for="formCheck1">
               {{ permission.name }}
             </label>
