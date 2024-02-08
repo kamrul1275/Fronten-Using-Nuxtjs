@@ -10,30 +10,29 @@
     <div class="col-md-3"></div>
 
 
-
-    <!-- loader -->
-
-    <!-- <div v-if="isLoading"  class="spinner-border text-info" role="status">
-      <span class="visually-hidden">Loading...</span>
-      </div>
-      end loader -->
-
-
     <div class="col-md-7 mb-3">
 
+          <!-- loader -->
+
+          <div v-if="isLoading" class="spinner-border text-info" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <!-- end loader -->
+
+     
+     
+      <br>
       <nuxt-link to="/product/create" v-if="hasCreatePermission==true" class="btn btn-primary py-1">Add Product </nuxt-link>
 
-      <br>
-      <br>
 
-
-
-      <div class="card ml-4">
+     
+      <div v-else class="card ml-4">
+      <!-- <div v-else  class="card ml-4"> -->
         <div class="card-body ml-3">
           <h4 class="card-title">Table</h4>
 
-          <div class="table-responsive">
-            <table class="table mb-0">
+          <div  class="table-responsive">
+            <table  class="table mb-0">
               <thead>
 
               
@@ -54,7 +53,7 @@
                   <td>{{ product.title }}</td>
                   <td>{{ product.price }}</td>
                   <td>
-                    <a href="" v-if="hasEditPremission==true" class="btn btn-success">Edit</a>
+                    <nuxt-link :to="`product/${product.id}`"  v-if="hasEditPremission==true" class="btn btn-success" >Edit </nuxt-link> 
                     <a href="" v-if="hasDeletePremission==true" class="btn btn-danger">Delete</a>
                   </td>
                 </tr>

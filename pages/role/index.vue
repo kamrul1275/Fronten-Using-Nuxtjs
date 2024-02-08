@@ -14,22 +14,21 @@
 
         <div class="col-md-7 mb-3">
 
+            <!-- loader -->
 
-                              <!-- loader -->
-
-                                <!-- <div v-if="isLoading" class="spinner-border text-info" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                    </div> -->
-                                    <!-- end loader -->
+            <div v-if="isLoading" class="spinner-border text-info" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <!-- end loader -->
 
 
-            <div  class="card ml-4">
+            <div v-else class="card ml-4">
                 <div class="card-body ml-3">
                     <h4 class="card-title"> Table</h4>
 
 
                     <div class="table-responsive">
-                        <table  class="table mb-0">
+                        <table class="table mb-0">
 
                             <thead>
                                 <tr>
@@ -43,15 +42,15 @@
                                 <tr v-for="(role, index)  in  roles.data" :key="index">
                                     <th scope="row"> {{ role.id }}</th>
                                     <td> {{ role.name }}</td>
-                                   <td> permissions name </td> 
-            
+                                    <td> permissions name </td>
+
                                     <td>
 
-                               
-<nuxt-link :to="`/user/${role.id}`" class="btn btn-success">  Edit </nuxt-link>
-<!-- <a href="" class="btn btn-danger">Delete</a> -->
 
-<button  @click.prevent="deleteUser(role.id)" class="btn btn-danger" >Delete</button>
+                                        <nuxt-link :to="`/user/${role.id}`" class="btn btn-success"> Edit </nuxt-link>
+                                        <!-- <a href="" class="btn btn-danger">Delete</a> -->
+
+                                        <button @click.prevent="deleteUser(role.id)" class="btn btn-danger">Delete</button>
 
 
 
@@ -84,73 +83,73 @@ import axios from "axios";
 
 
 definePageMeta({
-  middleware: 'auth'
-  // or middleware: 'auth'
+    middleware: 'auth'
+    // or middleware: 'auth'
 });
 
 
 export default {
 
- data() {
-  return {
-    Users:{
+    data() {
+        return {
+            Users: {
+
+            },
+            isLoading: true,
+            isLoadingTitle: 'Loading...',
+            roles: "",
+
+        };
+    },
+
+
+
+    mounted() {
+
+        this.getUsers();
 
     },
-      isLoading:true,
-      isLoadingTitle:'Loading...',
-      roles:"",
 
-  };
- },
+    methods: {
 
+        // gete data
+        getUsers() {
 
-
- mounted(){
-
-this.getUsers();
-
- },
-
- methods:{
-
-// gete data
-  getUsers(){
-
-    this.isLoading=true;
-    axios.get(`http://127.0.0.1:8000/api/roles`)
-        .then(res=>{
+            this.isLoading = true;
+            axios.get(`http://127.0.0.1:8000/api/roles`)
+                .then(res => {
 
 
-          this.isLoading=false;
+                    this.isLoading = false;
 
-          this.roles = res.data;
-           console.log("All Roles",this.roles);
-  
+                    this.roles = res.data;
+                    console.log("All Roles", this.roles);
 
 
-        });
 
-  },
+                });
+
+        },
 
 
 
 
 
-// delete User
+        // delete User
 
 
-// deleteUser(UserId){
+        // deleteUser(UserId){
 
 
-// if(confirm('are you sure')){
+        // if(confirm('are you sure')){
 
-//   axios.delete(`http://127.0.0.1:8000/api/user/delete/${UserId}`)
-//   .then(res=>{
-//   });
+        //   axios.delete(`http://127.0.0.1:8000/api/user/delete/${UserId}`)
+        //   .then(res=>{
+        //   });
 
-// }
+        // }
 
-    // this.isLoading=false;
+        // this.isLoading=false;
 
 
 
@@ -158,11 +157,11 @@ this.getUsers();
 
 
 
-}
+    }
 
 
 
- }//end deleted
+}//end deleted
 
 
 

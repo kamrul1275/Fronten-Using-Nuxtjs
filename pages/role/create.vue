@@ -17,10 +17,15 @@
     <div  class="col-md-7">
       <!-- loader -->
 
-    
-      <!-- end loader -->
+       <!-- loader -->
 
-      <div  class="card" >
+       <div v-if="isLoading" class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <!-- end loader -->
+     
+
+      <div v-else class="card" >
         <div  class="card-body">
           <h4 class="card-title">Create Role</h4>
 
@@ -117,13 +122,19 @@ export default {
   methods: {
         submiteRole() {
             //alert('hello');
-            console.log(this.Role);
-            this.isLoading=true;
-            this.isLoadingTitle="Saving....";
-            axios.post('http://127.0.0.1:8000/api/roles',this.Role)
+            // console.log(this.Role);
+            // this.isLoading=true;
+            // this.isLoadingTitle="Saving....";
+            let data = {
+              name: this.Role.name,
+              selectedPermissionsValues:  Object.values(this.Role.selectedPermissions)
+
+            }
+            console.log(data)
+            axios.post('http://127.0.0.1:8000/api/roles',data)
             .then(res=>{
               alert('Role Create Succesfully');
-               console.log("UserInfo:",res);
+               console.log("Role & Permission:",res);
                this.Role.name="";
                this.Role.permission="";
                this.isLoading=false;

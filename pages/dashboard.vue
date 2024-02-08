@@ -358,7 +358,7 @@ getProductCount(){
 
 try {
 
-axios.get(`http://127.0.0.1:8000/api/total/role/count`)
+axios.get(`http://127.0.0.1:8000/api/total/products/count`)
 .then(res=>{
 
 

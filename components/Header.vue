@@ -379,12 +379,12 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                        <a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> My Wallet</a>
+                        <nuxt-link :to="`/user/profile/${auth.getUser.id}`" class="dropdown-item" ><i class="ri-user-line align-middle me-1"></i> Profile</nuxt-link>
+                        <nuxt-link to="/user/profile/change_password" class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> Change Password </nuxt-link>
                         <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a>
                         <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock screen</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger"  @click.prevent="auth.logout()"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                        <nuxt-link class="dropdown-item text-danger"  @click.prevent="auth.logout()"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</nuxt-link>
                     </div>
                 </div>
     

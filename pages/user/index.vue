@@ -42,7 +42,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="(User, index)  in  Users" :key="index">
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{ User.id }}</th>
                                     <td> {{ User.name }}</td>
                                     <td> {{ User.email }}</td>
                                     <td> {{ User.role_id }}</td>

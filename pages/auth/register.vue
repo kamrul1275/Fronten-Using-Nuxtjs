@@ -1,70 +1,199 @@
 <template>
-    <div class="wrapper-page">
-            <div class="container-fluid p-0">
-                <div class="card">
-                    <div class="card-body">
-
-                       
-    
-                        <h4 class="text-muted text-center font-size-18"><b>Register</b></h4>
-    
-                        <div class="p-3">
-                            <form class="form-horizontal mt-3" action="index.html">
-
-                                <div class="form-group mb-3 row">
-                                    <div class="col-12">
-                                        <input class="form-control" type="text" required="" placeholder="Username">
-                                    </div>
-                                </div>
-    
-                                <div class="form-group mb-3 row">
-                                    <div class="col-12">
-                                        <input class="form-control" type="email" required="" placeholder="email">
-                                    </div>
-                                </div>
-    
-                                <div class="form-group mb-3 row">
-                                    <div class="col-12">
-                                        <input class="form-control" type="password" required="" placeholder="Password">
-                                    </div>
-                                </div>
-    
-               
-    
-                                <div class="form-group mb-3 text-center row mt-3 pt-1">
-                                    <div class="col-12">
-                                        <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Register</button>
-                                    </div>
-                                </div>
-    
-                                <div class="form-group mb-0 row mt-2">
-                                    <div class="col-sm-7 mt-3">
-                                      
-                                    </div>
-                                    <div class="col-sm-5 mt-3">
-
-                                        <!-- <nuxt-link to="/auth/login"> Login </nuxt-link> -->
-                                        <nuxt-link to="/" class="text-muted"><i class="mdi mdi-account-circle"></i>Login</nuxt-link>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end -->
-                    </div>
-                    <!-- end cardbody -->
-                </div>
-                <!-- end card -->
-            </div>
-            <!-- end container -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  
+    <div class="row">
+      <!-- loader -->
+  
+  
+  
+      <div class="col-md-3"> </div>
+      <div class="col-md-7">
+        <!-- loader -->
+  
+        <div v-if="isLoading" class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
+        <!-- end loader -->
+  
+        <div v-else class="card">
+  
+          <div class="card-body">
+  
+            <h4 class="card-title">Registration User</h4>
+  
+  
+            <div class="row mb-3">
+              <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input class="form-control" v-model="User.name" type="text" placeholder="Artisanal kale"
+                  id="example-text-input">
+              </div>
+            </div>
+            <!-- end row -->
+  
+  
+            <div class="row mb-3">
+              <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input class="form-control" v-model="User.email" type="email" placeholder="bootstrap@example.com"
+                  id="example-email-input">
+              </div>
+            </div>
+            <!-- end row -->
+  
+  
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label">Role</label>
+              <div class="col-sm-10">
+                <select class="form-select" aria-label="Default select example" v-model="User.role_id">
+                  <!-- <option selected="">Open this select menu</option> -->
+                  <option v-for="(role, index) in roles" :key="index" value="1">{{ role.name }} </option>
+  
+                </select>
+              </div>
+            </div>
+            <!-- end row -->
+  
+  
+  
+            <div class="row mb-3">
+              <label for="example-password-input" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input class="form-control" v-model="User.password" type="password">
+              </div>
+            </div>
+            <!-- end row -->
+            
+            <button class="btn btn-info ml-2" @click.prevent="submiteHandle()">Submite</button>
+
+            <nuxt-link to="/auth/login" class="btn btn-danger" > Login</nuxt-link> 
+
+            <!-- end row -->
+          </div>
+        </div>
+  
+    </div>
+</div>
+  
+    <!-- end row -->
 </template>
+  
+  
+  
+  
+<script>
 
-<script setup>
+import axios from "axios";
+  
+  
+  
+  definePageMeta({
+    middleware: 'auth'
+    // or middleware: 'auth'
+  });
+
+
+  definePageMeta({
+  layout: "custom",
+});
 
 
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+  
+  export default {
+  
+    data() {
+      return {
+        User: {
+  
+          name: "",
+          email: "",
+          role_id: "",
+          password: "",
+  
+  
+        },
+        roles: "",
+  
+  
+        isLoading: false,
+        isLoadingTitle: 'Loading...',
+      };
+    },
+  
+  
+    // getRole
+  
+    mounted() {
+      try {
+        let token = useTokenStore();
+        this.isLoading = true;
+        const roles = axios
+          .get("http://127.0.0.1:8000/api/roles", {
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${token.getToken}`,
+            },
+          })
+          .then((response) => {
+            this.roles = response.data.data;
+            this.isLoading = false;
+           // return navigateTo('/auth/login');
+            console.log("roles_Data..:", this.roles);
+          });
+      } catch (error) {
+        this.errors.push(error);
+        throw error;
+      }
+  
+      //end  get role
+    },
+  
+  
+  
+    methods: {
+  
+      submiteHandle() {
+  
+  
+  
+        //alert('hello');
+  
+        this.isLoading = true;
+  
+        this.isLoadingTitle = "Saving....";
+  
+  
+        axios.post('http://127.0.0.1:8000/api/user/create', this.User)
+          .then(res => {
+  
+            alert('User Create Succesfully');
+            console.log("UserInfo:", res);
+            this.User.name = "";
+            this.User.email = "";
+            this.User.role_id = "";
+            this.User.password = "";
+  
+  
+            this.isLoading = false;
+  
+            this.isLoadingTitle = "loading....";
+  
+  
+          });
+  
+  
+      }
+  
+  
+    }
+  }
+  
+  
+  </script>
+  
+  <style lang="scss" scoped></style>
