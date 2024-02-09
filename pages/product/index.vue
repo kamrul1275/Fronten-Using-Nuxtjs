@@ -2,76 +2,77 @@
   <br />
   <br />
 
-  <br />
-  <br />
 
 
-  <div class="row">
-    <div class="col-md-3"></div>
+  <div class="conatiner">
+
+    <div class="row">
+      <div class="col-md-2"></div>
 
 
-    <div class="col-md-7 mb-3">
+      <div class="col-md-8">
 
-          <!-- loader -->
+        <!-- loader -->
 
-          <div v-if="isLoading" class="spinner-border text-info" role="status">
+        <!-- <div v-if="isLoading" class="spinner-border text-info" role="status">
                 <span class="visually-hidden">Loading...</span>
+            </div> -->
+        <!-- end loader -->
+
+
+
+        <br>
+        <br>
+        <nuxt-link to="/product/create" v-if="hasCreatePermission" class="btn btn-primary py-1">Add Product </nuxt-link>
+
+
+
+        <div class="card ml-4">
+          <!-- <div v-else  class="card ml-4"> -->
+          <div class="card-body ml-3">
+            <h4 class="card-title">Table</h4>
+
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead>
+
+
+
+
+                  <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+
+                  <tr v-for="(product, index) in  products" :key="index">
+                    <th scope="row">{{ product.id }}</th>
+                    <td>{{ product.title }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                      <nuxt-link :to="`product/${product.id}`" v-if="hasEditPremission == true" class="btn btn-success">Edit
+                      </nuxt-link>
+                      <nuxt-link href="" v-if="hasDeletePremission == true" class="btn btn-danger">Delete</nuxt-link>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <!-- end loader -->
-
-     
-     
-      <br>
-      <nuxt-link to="/product/create" v-if="hasCreatePermission==true" class="btn btn-primary py-1">Add Product </nuxt-link>
-
-
-     
-      <div v-else class="card ml-4">
-      <!-- <div v-else  class="card ml-4"> -->
-        <div class="card-body ml-3">
-          <h4 class="card-title">Table</h4>
-
-          <div  class="table-responsive">
-            <table  class="table mb-0">
-              <thead>
-
-              
-
-
-                <tr>
-                  <th>No</th>
-                  <th>Title</th>
-                  <th>Price</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-
-
-                <tr v-for="(product, index) in  products" :key="index">
-                  <th scope="row">{{ product.id }}</th>
-                  <td>{{ product.title }}</td>
-                  <td>{{ product.price }}</td>
-                  <td>
-                    <nuxt-link :to="`product/${product.id}`"  v-if="hasEditPremission==true" class="btn btn-success" >Edit </nuxt-link> 
-                    <a href="" v-if="hasDeletePremission==true" class="btn btn-danger">Delete</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="col-md-3">
 
 
-
+      <div class="col-md-2"></div>
 
     </div>
+    <!-- end row -->
+
   </div>
-  <!-- end row -->
 </template>
 
 
@@ -106,10 +107,10 @@ export default {
       isLoadingTitle: 'Loading...',
       Products: "",
 
-      hasViewPremission:false,
-      hasCreatePermission:false,
-      hasEditPremission:false,
-      hasDeletePremission:false,
+      hasViewPremission: false,
+      hasCreatePermission: false,
+      hasEditPremission: false,
+      hasDeletePremission: false,
     };
 
 
@@ -152,7 +153,7 @@ export default {
 
     useAuthStore().hasViewPremission().then(res => {
       this.hasViewPremission = res;
-      console.log("view permission:",this.hasViewPremission); // Use the value here or in subsequent code
+      console.log("view permission:", this.hasViewPremission); // Use the value here or in subsequent code
     });
 
 
@@ -167,7 +168,7 @@ export default {
 
     useAuthStore().hasEditPremission().then(res => { // Use edit code
       this.hasEditPremission = res;
-      console.log("edit permission:",this.hasEditPremission);
+      console.log("edit permission:", this.hasEditPremission);
     });
 
 
@@ -181,7 +182,7 @@ export default {
 
 
 
-   // this.permissionGet();
+    // this.permissionGet();
 
     this.getProducts();
 
@@ -217,31 +218,6 @@ export default {
         });
 
     },
-
-
-
-
-
-    // delete User
-
-
-    // deleteUser(UserId){
-
-
-    // if(confirm('are you sure')){
-
-    //   axios.delete(`http://127.0.0.1:8000/api/user/delete/${UserId}`)
-    //   .then(res=>{
-    //   });
-
-    // }
-
-    // this.isLoading=false;
-
-
-
-
-
 
 
   }

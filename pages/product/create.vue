@@ -23,7 +23,7 @@
           <div class="row mb-3">
             <label for="example-email-input" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
-              <input v-model="Product.price" class="form-control" type="text" placeholder="price..."
+              <input v-model="Product.price" autocomplete="off" class="form-control" type="text" placeholder="price..."
                 id="example-email-input" />
             </div>
           </div>
@@ -91,7 +91,7 @@ export default {
 
     submiteProduct() {
 
-      alert(this.Product.title);
+      //alert(this.Product.title);
       console.log(this.Product.title);
 
       this.isLoading = true;

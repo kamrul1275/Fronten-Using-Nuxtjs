@@ -29,7 +29,7 @@
           <div class="row mb-3">
             <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-              <input class="form-control" v-model="User.name" type="text" placeholder="Artisanal kale"
+              <input class="form-control" autocomplete="off" v-model="User.name" type="text" placeholder="Artisanal kale"
                 id="example-text-input">
             </div>
           </div>
@@ -37,10 +37,10 @@
 
 
           <div class="row mb-3">
-            <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
+            <label for="" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-              <input class="form-control" v-model="User.email" type="email" placeholder="bootstrap@example.com"
-                id="example-email-input">
+              <input class="form-control" autocomplete="off" v-model="User.email" type="email" placeholder="example@hellocoders.com"
+                id="">
             </div>
           </div>
           <!-- end row -->
@@ -51,7 +51,7 @@
             <div class="col-sm-10">
               <select class="form-select" aria-label="Default select example" v-model="User.role_id">
                 <!-- <option selected="">Open this select menu</option> -->
-                <option v-for="(role, index) in roles" :key="index" value="1">{{ role.name }} </option>
+                <option v-for="(role, index) in roles" :key="index" :value="role.id">{{ role.name }} </option>
 
               </select>
             </div>
@@ -63,7 +63,7 @@
           <div class="row mb-3">
             <label for="example-password-input" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-              <input class="form-control" v-model="User.password" type="password">
+              <input class="form-control" autocomplete="off" v-model="User.password" type="password">
             </div>
           </div>
           <!-- end row -->

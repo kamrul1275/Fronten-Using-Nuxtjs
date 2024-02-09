@@ -14,14 +14,14 @@
 
         <div class="col-md-7 mb-3">
 
+          <!-- loader -->
 
-            <!-- loader -->
-
-            <div v-if="isLoading" class="spinner-border text-info" role="status">
+          <div v-if="isLoading" class="spinner-border text-info" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
             <!-- end loader -->
 
+  
 
             <div v-else class="card ml-4">
                 <div class="card-body ml-3">
@@ -45,7 +45,7 @@
                                     <th scope="row">{{ User.id }}</th>
                                     <td> {{ User.name }}</td>
                                     <td> {{ User.email }}</td>
-                                    <td> {{ User.role_id }}</td>
+                                    <td>{{ roles[User.role_id] }}</td>
 
                                     <td>
 
@@ -53,7 +53,7 @@
                                         <nuxt-link :to="`/user/${User.id}`" class="btn btn-success"> Edit </nuxt-link>
                                         <!-- <a href="" class="btn btn-danger">Delete</a> -->
 
-                                        <button @click.prevent="deleteUser(User.id)" class="btn btn-danger">Delete</button>
+                                        <button @click.prevent="deleteuser(User.id)" class="btn btn-danger">Delete</button>
 
 
 
@@ -101,7 +101,8 @@ export default {
             isLoading: true,
             isLoadingTitle: 'Loading...',
             UserId: "",
-
+            roles: {} // Object to store role names
+          
         };
     },
 
@@ -110,6 +111,9 @@ export default {
     mounted() {
 
         this.getUsers();
+        this.getRoles(); // Fetch roles along with users
+
+        
 
     },
 
@@ -132,35 +136,87 @@ export default {
 
                 });
 
+
+
+                
+
         },
 
-
-
+  
+// get role name
+        getRoles() {
+            axios.get(`http://127.0.0.1:8000/api/roles`)
+                .then(res => {
+                    this.roles = res.data.data.reduce((acc, role) => {
+                        acc[role.id] = role.name; // Map role names by their ids
+                        return acc;
+                    }, {});
+                    console.log("All Roles", this.roles);
+                });
+        },
 
 
         // delete User
 
 
-        deleteUser(UserId) {
+        // deleteUser(UserId) {
 
 
-            if (confirm('are you sure')) {
+        //     if (confirm('are you sure')) {
 
-                axios.delete(`http://127.0.0.1:8000/api/user/delete/${UserId}`)
-                    .then(res => {
-                    });
+        //         axios.delete(`http://127.0.0.1:8000/api/user/delete/${UserId}`)
+        //             .then(res => {
+        //             });
 
-            }
+        //     }
 
-            // this.isLoading=false;
-
-
-
+        //     // this.isLoading=false;
 
 
 
 
+
+
+
+        // }
+
+
+
+
+
+
+
+
+deleteuser(userId) {
+  if (!confirm('Are you sure you want to delete this user?')) {
+    return; // Exit if user cancels
+  }
+
+  const userIndex = this.Users.findIndex(user => user.id === userId);
+  if (userIndex !== -1) {
+    // Optimistically remove the user from the local data
+    this.Users.splice(userIndex, 1);
+
+    // Send the DELETE request
+    axios.delete(`http://127.0.0.1:8000/api/user/delete/${userId}`)
+      .then(res => {
+        // Handle successful deletion:
+        console.log('User deleted successfully:', res.data);
+      })
+      .catch(error => {
+        // Handle errors:
+        console.error('Failed to delete user:', error);
+
+        // Revert the UI change (optional, depending on your preference)
+        if (userIndex !== -1) {
+          this.Users.splice(userIndex, 0, {
+            id: userId,
+            // Other user properties
+          });
         }
+      });
+  }
+}
 
 
 
