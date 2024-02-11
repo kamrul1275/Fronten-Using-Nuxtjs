@@ -39,8 +39,8 @@
           <div class="row mb-3">
             <label for="" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-              <input class="form-control" autocomplete="off" v-model="User.email" type="email" placeholder="example@hellocoders.com"
-                id="">
+              <input class="form-control" autocomplete="off" v-model="User.email" type="email"
+                placeholder="example@hellocoders.com" id="">
             </div>
           </div>
           <!-- end row -->
@@ -67,7 +67,7 @@
             </div>
           </div>
           <!-- end row -->
-          <button class="btn btn-info" @click.prevent="submiteHandle()">Submite</button>
+          <button class="btn btn-info" @click.prevent="submitHandle()">Submite</button>
 
           <!-- end row -->
         </div>
@@ -84,6 +84,8 @@
 
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2'
+
 
 
 
@@ -106,6 +108,7 @@ export default {
 
       },
       roles: "",
+      Swal: {},
 
 
       isLoading: false,
@@ -144,40 +147,50 @@ export default {
 
   methods: {
 
-    submiteHandle() {
 
 
 
+
+    submitHandle() {
       //alert('hello');
 
       this.isLoading = true;
-
       this.isLoadingTitle = "Saving....";
-
 
       axios.post('http://127.0.0.1:8000/api/user/create', this.User)
         .then(res => {
+          // Swal.fire({
+          //   title: "Good job!",
+          //   text: "User created successfully!",
+          //   icon: "success"
+          // });
 
-          alert('User Create Succesfully');
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+
           console.log("UserInfo:", res);
           this.User.name = "";
           this.User.email = "";
           this.User.role_id = "";
           this.User.password = "";
 
-
           this.isLoading = false;
-
           this.isLoadingTitle = "loading....";
-
-
         });
-
-
     }
 
 
-  }
+
+
+
+
+
+  }//end method
 }
 
 

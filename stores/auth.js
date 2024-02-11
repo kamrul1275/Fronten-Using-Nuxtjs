@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', {
         token.setToken(data.authorization.token);
         this.permissions = data.permissions;
         console.log("Auth_Store:",data.authorization.token);
-      alert("User successfully login");
+      //alert("User successfully login");
 
         return navigateTo("/dashboard");
       } catch (error) {

@@ -86,6 +86,7 @@
     
   <script>
   import axios from "axios";
+  import Swal from 'sweetalert2'
   export default {
   
     data() {
@@ -147,6 +148,14 @@
         axios.put(`http://127.0.0.1:8000/api/user/update/${this.UserId}`,this.User)
           .then(res => {
   
+
+            Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User Update successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
             console.log(res.data);
             this.User.name = "";
             this.User.email = "";

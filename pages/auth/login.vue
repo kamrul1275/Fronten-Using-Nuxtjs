@@ -97,6 +97,8 @@
 </template>
 
 <script setup>
+import Swal from 'sweetalert2'
+
 const auth = useAuthStore();
 const token = useTokenStore();
 
@@ -120,6 +122,15 @@ const handleSubmite = async () => {
   // alert(user.email);
   try {
     await auth.login(user);
+
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "User created successfully!",
+      showConfirmButton: false,
+      timer: 1500
+    });
 
     // return navigateTo("/dashboard");
     //console.log(auth.login);;

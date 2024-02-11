@@ -46,7 +46,7 @@
 
 <script>
 import axios from "axios";
-
+import Swal from 'sweetalert2'
 
 
 definePageMeta({
@@ -88,7 +88,19 @@ export default {
       axios.post('http://127.0.0.1:8000/api/permissions', this.Permission)
         .then(res => {
 
-          alert('Permission Create Succesfully');
+          //alert('Permission Create Succesfully');
+
+
+        // satrt sweet alert
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Permission create successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        // end sweet alert
+
           console.log("Permission_Info:", res);
           this.Permission.name = "";
 

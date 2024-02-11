@@ -73,6 +73,7 @@
 
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 definePageMeta({
   middleware: "auth",
@@ -133,7 +134,15 @@ export default {
             console.log(data)
             axios.post('http://127.0.0.1:8000/api/roles',data)
             .then(res=>{
-              alert('Role Create Succesfully');
+// sweet alert.....
+            Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Role created successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+             // alert('Role Create Succesfully');
                console.log("Role & Permission:",res);
                this.Role.name="";
                this.Role.permission="";

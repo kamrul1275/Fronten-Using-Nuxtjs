@@ -74,6 +74,7 @@
 <script>
 import axios from "axios";
 import { useTokenStore } from '@/stores/token';
+import Swal from 'sweetalert2'
 
 
 definePageMeta({
@@ -152,7 +153,15 @@ export default {
         })
         .then(res => {
 
-          alert('Password Change Succesfully');
+            // sweet alert.....
+            Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Password Change successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          //alert('Password Change Succesfully');
           console.log("Password_Change:", res);
           this.User.old_password = "";
           this.User.password = "";

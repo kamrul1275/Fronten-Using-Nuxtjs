@@ -58,6 +58,7 @@
 
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 
 
@@ -102,8 +103,17 @@ export default {
       axios.post('http://127.0.0.1:8000/api/products', this.Product)
         .then(res => {
 
-          alert(' Product Create Succesfully');
-          console.log("Product_Info:", res);
+          //alert(' Product Create Succesfully');
+             // satrt sweet alert
+            Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product create successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        // end sweet alert
+         // console.log("Product_Info:", res);
           this.Product.title = "";
           this.Product.price = "";
 

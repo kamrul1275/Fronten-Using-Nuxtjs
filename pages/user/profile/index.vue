@@ -134,7 +134,7 @@ export default {
   
   this.UserId = this.$route.params.id;
 
-  alert(this.UserId);
+  //alert(this.UserId);
 
 //this.profileUpdate(this.UserId);
 

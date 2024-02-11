@@ -53,7 +53,7 @@
                                         <nuxt-link :to="`/user/${User.id}`" class="btn btn-success"> Edit </nuxt-link>
                                         <!-- <a href="" class="btn btn-danger">Delete</a> -->
 
-                                        <button @click.prevent="deleteuser(User.id)" class="btn btn-danger">Delete</button>
+                                        <button @click.prevent="deleteUser(User.id)" class="btn btn-danger">Delete</button>
 
 
 
@@ -83,6 +83,7 @@
 
 import axios from "axios";
 
+import Swal from 'sweetalert2'
 
 
 definePageMeta({
@@ -187,8 +188,19 @@ export default {
 
 
 
-deleteuser(userId) {
-  if (!confirm('Are you sure you want to delete this user?')) {
+async deleteUser(userId) {
+  const confirmed = await Swal.fire({
+    title: 'Are you sure?',
+    text: 'You are about to delete this user. This action cannot be undone.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6'
+  });
+
+  if (!confirmed.isConfirmed) {
     return; // Exit if user cancels
   }
 
@@ -202,6 +214,12 @@ deleteuser(userId) {
       .then(res => {
         // Handle successful deletion:
         console.log('User deleted successfully:', res.data);
+
+        Swal.fire({
+          title: 'Success!',
+          text: 'User deleted successfully.',
+          icon: 'success'
+        });
       })
       .catch(error => {
         // Handle errors:
@@ -214,6 +232,12 @@ deleteuser(userId) {
             // Other user properties
           });
         }
+
+        Swal.fire({
+          title: 'Error!',
+          text: 'Failed to delete user.',
+          icon: 'error'
+        });
       });
   }
 }

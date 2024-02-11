@@ -56,7 +56,7 @@
                     <td>
                       <nuxt-link :to="`product/${product.id}`" v-if="hasEditPremission == true" class="btn btn-success">Edit
                       </nuxt-link>
-                      <nuxt-link href="" v-if="hasDeletePremission == true" class="btn btn-danger">Delete</nuxt-link>
+                      <button   @click.prevent="deleteUser(product.id)"     v-if="hasDeletePremission == true" class="btn btn-danger">Delete</button>
                     </td>
                   </tr>
                 </tbody>
@@ -219,6 +219,14 @@ export default {
 
     },
 
+
+
+    // delete part
+
+
+    deleteUser(){
+      alert('working..');
+    }
 
   }
 

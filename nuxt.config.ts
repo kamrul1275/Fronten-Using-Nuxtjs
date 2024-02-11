@@ -88,6 +88,11 @@ build: {
   transpile: ['pinia-plugin-persistedstate'],
 },
 
+
+plugins: [
+  { src: '~/plugins/sweetalert', mode: 'client' }
+]
+
 });
 
 
