@@ -30,21 +30,18 @@
           <!-- end row -->
 
 
-          <!-- <div class="row mb-3">
+          <div class="row mb-3">
             <label for="example-email-input" class="col-sm-2 col-form-label">Image</label>
             <div class="col-sm-10">
-              <input 
-                class="form-control"
-                type="file"
-                placeholder="price..."
-                id="example-email-input"
-              />
+
+              <input type="file" class="form-control" @change="handleImageUpload">
+              
             </div>
-          </div> -->
+          </div> 
           <!-- end row -->
 
           <!-- end row -->
-          <button class="btn btn-info" @click.prevent="submiteProduct()">Submite</button>
+          <button class="btn btn-info" @click.prevent="submitProduct()">Submite</button>
 
           <!-- end row -->
         </div>
@@ -71,16 +68,14 @@ export default {
 
   data() {
     return {
-      Product: {
+
+      Product:{
 
         title: "",
         price: "",
 
-
-
       },
-
-
+    
       isLoading: false,
       isLoadingTitle: 'Loading...',
     };
@@ -90,45 +85,52 @@ export default {
 
   methods: {
 
-    submiteProduct() {
+    submitProduct() {
+    this.isLoading = true;
+    this.isLoadingTitle = "Saving....";
 
-      //alert(this.Product.title);
-      console.log(this.Product.title);
-
-      this.isLoading = true;
-
-      this.isLoadingTitle = "Saving....";
-
-
-      axios.post('http://127.0.0.1:8000/api/products', this.Product)
-        .then(res => {
-
-          //alert(' Product Create Succesfully');
-             // satrt sweet alert
-            Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Product create successfully!",
-            showConfirmButton: false,
-            timer: 1500
-          });
-        // end sweet alert
-         // console.log("Product_Info:", res);
-          this.Product.title = "";
-          this.Product.price = "";
-
-
-
-
-          this.isLoading = false;
-
-          this.isLoadingTitle = "loading....";
-
-
-        });
-
-
+    // Check if an image file is selected
+    if (!this.imageFile) {
+        // Handle the case where no image file is selected
+        console.error("No image file selected");
+        return; // Abort the submission process
     }
+
+    // Create FormData object to handle file upload
+    let formData = new FormData();
+    formData.append('image', this.imageFile); // Assuming 'this.imageFile' is the selected file
+    formData.append('title', this.Product.title); // Assuming 'title' is a required field
+    formData.append('price', this.Product.price); // Assuming 'price' is a required field
+
+    // Make a POST request to upload the image and product details
+    axios.post('http://127.0.0.1:8000/api/products', formData)
+        .then(res => {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Product created successfully!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            this.Product.title = "";
+            this.Product.price = "";
+            this.isLoading = false;
+            this.isLoadingTitle = "Loading....";
+        })
+        .catch(error => {
+            console.error("Error creating product:", error);
+            // Handle error if product creation fails
+        });
+},
+
+handleImageUpload(event) {
+    // Get the selected file from the input field
+    this.imageFile = event.target.files[0];
+},
+
+
+
 
 
   }

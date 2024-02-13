@@ -47,10 +47,10 @@
                                     <td>
 
 
-                                        <nuxt-link   :to="`/role/${role.id}`" class="btn btn-success"> Edit </nuxt-link>
+                                        <nuxt-link   :to="`/role/${role.id}`" class="btn btn-success"> <i class='far fa-edit'></i> </nuxt-link>
                                         <!-- <a href="" class="btn btn-danger">Delete</a> -->
 
-                                        <button @click.prevent="deleteRole(role.id)" class="btn btn-danger">Delete</button>
+                                        <button @click.prevent="deleteRole(role.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
 
 

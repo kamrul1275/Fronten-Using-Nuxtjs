@@ -43,20 +43,31 @@
                     <th>No</th>
                     <th>Title</th>
                     <th>Price</th>
+                    <th>Image</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
 
 
-                  <tr v-for="(product, index) in  products" :key="index">
+                  <tr v-for="(product, index) in  products.products" :key="index">
+
+                  
                     <th scope="row">{{ product.id }}</th>
                     <td>{{ product.title }}</td>
                     <td>{{ product.price }}</td>
                     <td>
-                      <nuxt-link :to="`product/${product.id}`" v-if="hasEditPremission == true" class="btn btn-success">Edit
+    
+                      <img :src="`${product.product__image}`" alt="Product Image" style="width:30px; height:30px;">
+
+              <!-- //<img :src="product.product__image" alt="Product Image" style="width:30px; height:30px;">  -->
+              </td>
+
+
+                    <td>
+                      <nuxt-link :to="`product/${product.id}`" v-if="hasEditPremission == true" class="btn btn-success"><i class='far fa-edit'></i>
                       </nuxt-link>
-                      <button   @click.prevent="deleteUser(product.id)"     v-if="hasDeletePremission == true" class="btn btn-danger">Delete</button>
+                      <button   @click.prevent="deleteUser(product.id)"     v-if="hasDeletePremission == true" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     </td>
                   </tr>
                 </tbody>
@@ -82,11 +93,6 @@ import axios from "axios";
 
 import { useAuthStore } from '@/stores/auth';
 
-// let hasViewPremission = false;
-// let hasCreatePermission = false;
-// let hasEditPremission = false;
-// let hasDeletePremission = false;
-// let testTemp = true;
 
 
 definePageMeta({
@@ -101,11 +107,13 @@ export default {
     return {
       products: {
       },
-
-      products: "",
+      product_images:{},
+    
+  //product_images:"",
+  
       isLoading: true,
       isLoadingTitle: 'Loading...',
-      Products: "",
+  
 
       hasViewPremission: false,
       hasCreatePermission: false,
@@ -119,36 +127,7 @@ export default {
 
 
 
-
-
-
-  //  computed(){
-  //   return auth.getPermission;
-
-  // },
-
-
-  // before mounted
-
-
-
-  // beforeMount() {
-
-
-
-
-
-  // },
-
-
-
-
   mounted() {
-
-
-
-
-
 
 
     useAuthStore().hasViewPremission().then(res => {
@@ -162,7 +141,6 @@ export default {
       this.hasCreatePermission = res;
       console.log("crete permission:", this.hasCreatePermission); // Use the value here or in subsequent code
     });
-
 
 
 
@@ -191,15 +169,6 @@ export default {
 
   methods: {
 
-
-    // permissionGet() {
-
-    //   return useAuthStore().getPermission;
-    //   //console.log("permission list:",useAuthStore().getPermission);
-    // },
-
-
-
     // gete data
     getProducts() {
 
@@ -218,7 +187,6 @@ export default {
         });
 
     },
-
 
 
     // delete part

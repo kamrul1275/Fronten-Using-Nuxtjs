@@ -26,11 +26,13 @@
           <h4 class="card-title">Create User</h4>
 
 
+
           <div class="row mb-3">
             <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
               <input class="form-control" autocomplete="off" v-model="User.name" type="text" placeholder="Artisanal kale"
                 id="example-text-input">
+            
             </div>
           </div>
           <!-- end row -->
@@ -109,6 +111,7 @@ export default {
       },
       roles: "",
       Swal: {},
+      errors:{},
 
 
       isLoading: false,
@@ -154,17 +157,19 @@ export default {
     submitHandle() {
       //alert('hello');
 
-      this.isLoading = true;
+
+   
+        
+
+        this.isLoading = true;
       this.isLoadingTitle = "Saving....";
 
-      axios.post('http://127.0.0.1:8000/api/user/create', this.User)
-        .then(res => {
-          // Swal.fire({
-          //   title: "Good job!",
-          //   text: "User created successfully!",
-          //   icon: "success"
-          // });
+ 
 
+
+        axios.post('http://127.0.0.1:8000/api/user/create', this.User)
+        .then(res => {
+  
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -181,19 +186,22 @@ export default {
 
           this.isLoading = false;
           this.isLoadingTitle = "loading....";
+
+
+
         });
-    }
+    
 
-
-
+    
 
 
 
 
   }//end method
-}
 
 
+  }
+  }
 </script>
 
 <style lang="scss" scoped></style>

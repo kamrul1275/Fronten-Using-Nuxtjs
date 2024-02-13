@@ -1,3 +1,5 @@
+import { Link } from "#build/components";
+
 export default defineNuxtConfig({
   // Your Nuxt configuration options here
 css: [
@@ -7,6 +9,10 @@ css: [
   "assets/css/app-rtl.min.css",     
   "assets/css/app.min.css",
 ],
+
+// <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
+
+
 
 script : [
   {
@@ -66,21 +72,31 @@ script : [
 
 app: {
   head: {
+
+    // <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css" >
+    link: [
+  
+      {rel: 'stylesheet',  href:"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" }
+    ],
+
     script: [
 
       {
         src: "https://code.jquery.com/jquery-3.7.1.min.js" ,
       },
+
       {
         src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js",
         type: "text/javascript",
       },
+
+
+      
     ],
   },
 },
 
-modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt',
-],
+modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt', "@nuxt/image"],
 
 
 
@@ -94,8 +110,3 @@ plugins: [
 ]
 
 });
-
-
-
-
- 

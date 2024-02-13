@@ -21,10 +21,13 @@
               </a>
             </div>
           </div>
-          <span v-if="errors.email" class="text-red-500">{{
-                  errors.email[0]
-                }}</span>
 
+
+          
+          <!-- <span v-if="errors.message" class="text-danger">{{
+                  errors.message[0]
+                }}</span> -->
+          
           <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
 
           <div class="p-3">
@@ -33,7 +36,7 @@
                 <div class="col-12">
                   <input class="form-control" v-model="user.email" type="text" />
                 </div>
-                <span v-if="errors.email" class="text-red-500">{{
+                <span v-if="errors.email" class="text-danger">{{
                   errors.email[0]
                 }}</span>
               </div>
@@ -43,7 +46,7 @@
                 <div class="col-12">
                   <input class="form-control" v-model="user.password" type="password" />
                 </div>
-                <span v-if="errors.password" class="text-red-500">{{
+                <span v-if="errors.password" class="text-danger">{{
                   errors.password[0]
                 }}</span>
               </div>
@@ -57,7 +60,7 @@
                       id="customCheck1"
                     />
                     <label class="form-label ms-1" for="customCheck1"
-                      >Remember me.....</label
+                      >Remember me</label
                     >
                   </div>
                 </div>
@@ -76,7 +79,7 @@
 
               <div class="form-group mb-0 row mt-2">
                 <div class="col-sm-7 mt-3">
-                  <nuxt-link to="/auth/reset_password" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password..? </nuxt-link>
+                  <nuxt-link to="/auth/reset_password" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password</nuxt-link>
                 </div>
                 <div class="col-sm-5 mt-3">
                   <nuxt-link to="/auth/register" class="text-muted"
@@ -136,7 +139,10 @@ const handleSubmite = async () => {
     //console.log(auth.login);;
   } catch (error) {
     //console.log(error.data.errors);
-    errors.value = error.data.errors;
+   errors.value = error.data.errors;
+
+    //throw errors;
+   
   }
 };
 </script>
