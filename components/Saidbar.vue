@@ -96,33 +96,42 @@
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="ri-eraser-fill"></i>
-                        <span class="badge rounded-pill bg-danger float-end">8</span>
-                        <span>Forms</span>
+                        <span>Category</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="form-elements.html">Form Elements</a></li>
-                        <li><a href="form-validation.html">Form Validation</a></li>
-                        <li><a href="form-advanced.html">Form Advanced Plugins</a></li>
-                        <li><a href="form-editors.html">Form Editors</a></li>
-                        <li><a href="form-uploads.html">Form File Upload</a></li>
-                        <li><a href="form-xeditable.html">Form X-editable</a></li>
-                        <li><a href="form-wizard.html">Form Wizard</a></li>
-                        <li><a href="form-mask.html">Form Mask</a></li>
+                        <li><nuxt-link to="/category/create"> Create Category </nuxt-link> </li>
+                        <li><nuxt-link to="/category"> All Category </nuxt-link> </li>
+                      
                     </ul>
                 </li>
+
+
+
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect">
+                        <i class="ri-share-line"></i>
+                        <span>Sub Category</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><nuxt-link to="/subcategory/create" >Create SubCategory </nuxt-link> </li>
+                        <li><nuxt-link to="/subcategory">All SubCategory </nuxt-link> </li>
+                      
+                    </ul>
+                </li>
+
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-table-2"></i>
-                        <span>Tables</span>
+                        <span>Brand</span>
                     </a>
+
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="tables-basic.html">Basic Tables</a></li>
-                        <li><a href="tables-datatable.html">Data Tables</a></li>
-                        <li><a href="tables-responsive.html">Responsive Table</a></li>
-                        <li><a href="tables-editable.html">Editable Table</a></li>
+                        <li><nuxt-link to="/brand/create" >Create Brand</nuxt-link></li>
+                        <li><nuxt-link to="/brand">All Brand</nuxt-link></li>
                     </ul>
                 </li>
+
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -137,6 +146,7 @@
                         <li><a href="charts-sparkline.html">Sparkline Charts</a></li>
                     </ul>
                 </li>
+
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

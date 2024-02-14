@@ -107,6 +107,12 @@ build: {
 
 plugins: [
   { src: '~/plugins/sweetalert', mode: 'client' }
-]
+],
+content: {
+  experimental: {
+    search: true
+  }
+}
+
 
 });

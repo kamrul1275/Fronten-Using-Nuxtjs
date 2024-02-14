@@ -46,7 +46,7 @@
                                     <td>
 
                                
-<nuxt-link :to="`/user/${permission.id}`" class="btn btn-success">  <i class='far fa-edit'></i> </nuxt-link>
+<nuxt-link :to="`/permission/${permission.id}`" class="btn btn-success">  <i class='far fa-edit'></i> </nuxt-link>
 <!-- <a href="" class="btn btn-danger">Delete</a> -->
 
 <button  @click.prevent="deleteUser(permission.id)" class="btn btn-danger" ><i class="fa fa-trash"></i></button>

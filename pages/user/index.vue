@@ -9,6 +9,7 @@
     <div class="row">
         <div class="col-md-3">
 
+          
         </div>
 
 
@@ -21,12 +22,34 @@
             </div>
             <!-- end loader -->
 
-  
-
+          
             <div v-else class="card ml-4">
                 <div class="card-body ml-3">
+
+
+
+                    <div class="row mb-3">
+          
+            <div class="col-sm-10">
+                <form class="d-flex">
+                    <input type="text" v-model="searchTerm" @input="performSearch" placeholder="searching...">
+    <button  class="btn btn-success">Search</button>
+      </form>
+{{  }}
+      
+    <ul>
+      <li v-for="result in searchResults.data" :key="result.id">{{ result.name }}</li>
+    </ul>
+
+        
+            </div>
+          </div>
+
+
+
                     <h4 class="card-title"> Table</h4>
 
+                
 
                     <div class="table-responsive">
                         <table class="table mb-0">
@@ -100,13 +123,23 @@ export default {
             Users: {
 
             },
+
+            searchTerm: '',
+      searchResults: [],
+            
+
+      isLoading: false,
             isLoading: true,
             isLoadingTitle: 'Loading...',
             UserId: "",
             roles: {} // Object to store role names
           
         };
+
+       
     },
+
+
 
 
 
@@ -120,6 +153,30 @@ export default {
     },
 
     methods: {
+
+
+
+
+      
+        async performSearch() {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/user/info/?q=${this.searchTerm}`);
+        if(response.data.data.length!=0){
+            this.searchResults = response.data;
+        }
+        else{
+            this.searchResults.data = [{name:'Nothing Found'}]
+        }
+
+
+        console.log('searching', this.searchResults);
+      } catch (error) {
+        
+        console.error('Error fetching search results:', error);
+      }
+    },
+
+
 
         // gete data
         getUsers() {
