@@ -40,8 +40,7 @@
             <div class="row mb-3">
               <label for="" class="col-sm-2 col-form-label">Photo</label>
               <div class="col-sm-10">
-                <input class="form-control" autocomplete="off"  type="file"
-                  id="">
+                <input type="file" class="form-control" @change="handleImageUpload" />
               </div>
             </div>
             <!-- end row -->
@@ -95,86 +94,63 @@
       };
     },
   
-  
-    // getRole
-  
-    mounted() {
-      try {
-        let token = useTokenStore();
-        this.isLoading = true;
-        const roles = axios
-          .get("http://127.0.0.1:8000/api/roles", {
-            headers: {
-              Accept: "application/json",
-              Authorization: `Bearer ${token.getToken}`,
-            },
-          })
-          .then((response) => {
-            this.roles = response.data.data;
-            this.isLoading = false;
-            console.log("roles_Data..:", this.roles);
-          });
-      } catch (error) {
-        this.errors.push(error);
-        throw error;
-      }
-  
-      //end  get role
-    },
-  
-  
+
   
     methods: {
   
   
 
+
       submitHandle() {
-        //alert('hello');
-  
-  
+      this.isLoading = true;
+      this.isLoadingTitle = "Saving....";
+
+      // Check if an image file is selected
+      if (!this.imageFile) {
+        // Handle the case where no image file is selected
+        console.error("No image file selected");
+        return; // Abort the submission process
+      }
+
+      // Create FormData object to handle file upload
+      let formData = new FormData();
+      formData.append("image", this.imageFile); // Assuming 'this.imageFile' is the selected file
+      formData.append("category_name", this.Category.category_name); // Assuming 'title' is a required field
      
-  
-          this.isLoading = true;
-        this.isLoadingTitle = "Saving....";
-  
-   
-  
-  
-          axios.post('http://127.0.0.1:8000/api/user/create', this.User)
-          .then(res => {
-    
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "User created successfully!",
-              showConfirmButton: false,
-              timer: 1500
-            });
-  
-            console.log("UserInfo:", res);
-            this.User.name = "";
-            this.User.email = "";
-            this.User.role_id = "";
-            this.User.password = "";
-  
-            this.isLoading = false;
-            this.isLoadingTitle = "loading....";
-  
-  
-  
+
+      // Make a POST request to upload the image and product details
+      axios
+        .post("http://127.0.0.1:8000/api/categories", formData)
+        .then((res) => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Category created successfully!",
+            showConfirmButton: false,
+            timer: 1500,
           });
+
       
-  
-      
-  
-  
-  
-  
-    }//end method
-  
-  
+          this.Category.category_name = "";
+          this.isLoading = false;
+          this.isLoadingTitle = "Loading....";
+        })
+        .catch((error) => {
+          console.error("Error creating product:", error);
+          // Handle error if product creation fails
+        });
+    },
+
+    handleImageUpload(event) {
+      // Get the selected file from the input field
+      this.imageFile = event.target.files[0];
+    },
+  },
+
+
+
     }
-    }
+    
   </script>
   
   <style lang="scss" scoped></style>

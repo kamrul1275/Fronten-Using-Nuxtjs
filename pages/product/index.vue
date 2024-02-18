@@ -41,8 +41,15 @@
 
                   <tr>
                     <th>No</th>
-                    <th>Title</th>
-                    <th>Price</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Quanty</th>
+                    <th>Tags</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Sell_Price</th>
+                    <th>Dis_price</th>
+                    <th>short_descp</th>
                     <th>Image</th>
                     <th>Action</th>
                   </tr>

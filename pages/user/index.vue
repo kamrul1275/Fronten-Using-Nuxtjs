@@ -35,7 +35,7 @@
                     <input type="text" v-model="searchTerm" @input="performSearch" placeholder="searching...">
     <button  class="btn btn-success">Search</button>
       </form>
-{{  }}
+
       
     <ul>
       <li v-for="result in searchResults.data" :key="result.id">{{ result.name }}</li>

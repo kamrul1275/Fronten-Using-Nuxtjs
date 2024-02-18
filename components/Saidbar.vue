@@ -65,19 +65,6 @@
                 </li> 
 
 
-
-                <li>
-                    <a href="" class="has-arrow waves-effect">
-                        <i class="ri-mail-send-line"></i>
-                        <span>Product</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li> <nuxt-link to="/product/create">Create Product </nuxt-link> </li>
-                        <li> <nuxt-link to="/product">All Product</nuxt-link> </li>
-                    </ul>
-                </li>
-
-
 <!-- 
                 <li>
                     <a href="" class="has-arrow waves-effect">
@@ -131,6 +118,25 @@
                         <li><nuxt-link to="/brand">All Brand</nuxt-link></li>
                     </ul>
                 </li>
+
+
+
+
+
+                <li>
+                    <a href="" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Product</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li> <nuxt-link to="/product/create">Create Product </nuxt-link> </li>
+                        <li> <nuxt-link to="/product">All Product</nuxt-link> </li>
+                    </ul>
+                </li>
+
+
+
+
 
 
                 <li>
