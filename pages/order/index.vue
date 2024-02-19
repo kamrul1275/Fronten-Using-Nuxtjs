@@ -15,9 +15,9 @@
 
             <!-- loader -->
 
-            <!-- <div v-if="isLoading" class="spinner-border text-info" role="status">
+           <div v-if="isLoading" class="spinner-border text-info" role="status">
                 <span class="visually-hidden">Loading...</span>
-            </div> -->
+            </div> 
             <!-- end loader -->
 
 
@@ -32,20 +32,18 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Brand Name</th>
-                                    <th>Image</th>
+                                    <th>Order Amount</th>
+                                    <th>Order Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(brand, index)  in  brands" :key="index">
-                                    <th scope="row"> {{brand.id}}</th>
-                                    <td> {{brand.brand_name}}</td>
-                                    <td> 
-                                       <!-- <img :src="asset('upload/brand/brand.brand_image')" alt="My Image" />  -->
-                                        <NuxtImg :src="`http://127.0.0.1:8000/${brand.brand_image}`" style="height:40px; width:40px;" alt="brand images" />
-                                         </td>
-
+                                <tr v-for="(Order,index)  in Orders" :key="index">
+                                    <th>{{Order.id  }}</th>
+                                    <th>{{Order.total_ammount }}</th>
+                                    <th>{{Order.order_date }}</th>
+                                   
+                       
                                     <td>
 
 
@@ -55,8 +53,8 @@
                                         <button @click.prevent="" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
 
-
-                                    </td>
+</td>
+                                   
                                 </tr>
 
 
@@ -77,6 +75,11 @@
 </template>
 
 
+
+
+
+
+
 <script>
 
 import axios from "axios";
@@ -94,7 +97,7 @@ export default {
 
     data() {
         return {
-            brands: {
+            Orders: {
 
             },
 
@@ -104,7 +107,7 @@ export default {
             isLoading: true,
             isLoadingTitle: 'Loading...',
 
-            imageUrl:"",
+          
         };
 
        
@@ -116,29 +119,26 @@ export default {
 
     mounted() {
 
-        this.getBrands();
+        this.getOrder();
      
 
         
 
     },
 
-
-
-
     methods: {
 
 
         // gete data
-        getBrands() {
+        getOrder() {
 
             this.isLoading = true;
-            axios.get(`http://127.0.0.1:8000/api/brands`)
+            axios.get(`http://127.0.0.1:8000/api/orders`)
                 .then(res => {
 
                     this.isLoading = false;
-                    this.brands = res.data.data;
-                    console.log("brands list", this.brands);
+                    this.Orders = res.data.data;
+                    console.log("Order list", this.Orders);
 
 
 
@@ -248,6 +248,9 @@ export default {
 
 
 </script>
+
+
+
 
 <style lang="scss" scoped>
 

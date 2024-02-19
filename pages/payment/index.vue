@@ -15,9 +15,9 @@
 
             <!-- loader -->
 
-            <!-- <div v-if="isLoading" class="spinner-border text-info" role="status">
+           <div v-if="isLoading" class="spinner-border text-info" role="status">
                 <span class="visually-hidden">Loading...</span>
-            </div> -->
+            </div> 
             <!-- end loader -->
 
 
@@ -32,21 +32,26 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Brand Name</th>
-                                    <th>Image</th>
+                                    <th>User Id</th>
+                                    <th>Order Id</th>
+                                    <th>Ammount</th>
+                                    <th>Account No</th>
+                                    <th>Payment_type</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(brand, index)  in  brands" :key="index">
-                                    <th scope="row"> {{brand.id}}</th>
-                                    <td> {{brand.brand_name}}</td>
-                                    <td> 
-                                       <!-- <img :src="asset('upload/brand/brand.brand_image')" alt="My Image" />  -->
-                                        <NuxtImg :src="`http://127.0.0.1:8000/${brand.brand_image}`" style="height:40px; width:40px;" alt="brand images" />
-                                         </td>
+                                <tr >
+                                    <th>1</th>
+                                    <th>5</th>
+                                    <th>sds</th>
+                                    <th>4545</th>
+                                    <th>4</th>
+                                    <th>sd5454s</th>
 
-                                    <td>
+                                   
+                              
+                                    <td> 
 
 
                                         <nuxt-link   to="" class="btn btn-success"> <i class='far fa-edit'></i> </nuxt-link>
@@ -54,9 +59,9 @@
 
                                         <button @click.prevent="" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
+</td>
 
-
-                                    </td>
+                                   
                                 </tr>
 
 
@@ -77,6 +82,11 @@
 </template>
 
 
+
+
+
+
+
 <script>
 
 import axios from "axios";
@@ -94,7 +104,7 @@ export default {
 
     data() {
         return {
-            brands: {
+            Payment: {
 
             },
 
@@ -104,7 +114,7 @@ export default {
             isLoading: true,
             isLoadingTitle: 'Loading...',
 
-            imageUrl:"",
+          
         };
 
        
@@ -116,29 +126,26 @@ export default {
 
     mounted() {
 
-        this.getBrands();
+        this.getPayment();
      
 
         
 
     },
 
-
-
-
     methods: {
 
 
         // gete data
-        getBrands() {
+        getPayment() {
 
             this.isLoading = true;
-            axios.get(`http://127.0.0.1:8000/api/brands`)
+            axios.get(`http://127.0.0.1:8000/api/payments`)
                 .then(res => {
 
                     this.isLoading = false;
-                    this.brands = res.data.data;
-                    console.log("brands list", this.brands);
+                    this.payments = res.data.data;
+                    console.log("payments list", this.payments);
 
 
 
@@ -248,6 +255,9 @@ export default {
 
 
 </script>
+
+
+
 
 <style lang="scss" scoped>
 

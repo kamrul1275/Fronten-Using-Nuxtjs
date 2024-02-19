@@ -33,7 +33,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Category Name</th>
-                                    <th>Image</th>
+                                    <th>Category Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,7 +41,8 @@
                                 <tr v-for="(Category, index)  in  Categories" :key="index">
                                     <th scope="row"> {{ Category.id }}</th>
                                     <td> {{Category.category_name}}</td>
-                                    <td> img </td>
+                                    
+                                    <NuxtImg :src="`http://127.0.0.1:8000/${Category.category_image}`" style="height:70px; width:70px;" alt="brand images" />
 
                                     <td>
 

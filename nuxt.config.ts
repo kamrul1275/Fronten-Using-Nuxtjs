@@ -8,6 +8,7 @@ css: [
   "assets/css/icons.min.css",
   "assets/css/app-rtl.min.css",     
   "assets/css/app.min.css",
+  "assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css",
 ],
 
 // <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
@@ -65,6 +66,10 @@ script : [
 
   {
   src:"assets/js/app.js",
+  },
+
+  {
+     src:"assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js",
   },
 ],
 

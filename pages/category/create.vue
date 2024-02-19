@@ -40,7 +40,7 @@
             <div class="row mb-3">
               <label for="" class="col-sm-2 col-form-label">Photo</label>
               <div class="col-sm-10">
-                <input type="file" class="form-control" @change="handleImageUpload" />
+                <input type="file" id="category_image" @change="onFileChange" accept="image/*" required>
               </div>
             </div>
             <!-- end row -->
@@ -48,7 +48,7 @@
   
 
           
-            <button class="btn btn-info" @click.prevent="submitHandle()">Submite</button>
+            <button class="btn btn-info" @click.prevent="saveCategory()">Submite</button>
   
             <!-- end row -->
           </div>
@@ -82,6 +82,7 @@
         Category: {
 
          category_name: "",
+         categoryImage: null
           
         
         },
@@ -95,60 +96,60 @@
     },
   
 
-  
+
+
+
+
+
+
+
+
     methods: {
-  
-  
-
-
-      submitHandle() {
-      this.isLoading = true;
-      this.isLoadingTitle = "Saving....";
-
-      // Check if an image file is selected
-      if (!this.imageFile) {
-        // Handle the case where no image file is selected
-        console.error("No image file selected");
-        return; // Abort the submission process
-      }
-
-      // Create FormData object to handle file upload
+    onFileChange(e) {
+      this.categoryImage = e.target.files[0];
+    },
+    saveCategory() {
       let formData = new FormData();
-      formData.append("image", this.imageFile); // Assuming 'this.imageFile' is the selected file
-      formData.append("category_name", this.Category.category_name); // Assuming 'title' is a required field
-     
+      formData.append('category_name', this.Category.category_name);
+      formData.append('category_image', this.categoryImage);
 
-      // Make a POST request to upload the image and product details
-      axios
-        .post("http://127.0.0.1:8000/api/categories", formData)
-        .then((res) => {
+      axios.post('http://127.0.0.1:8000/api/categories', formData)
+        .then(response => {
+
+
+
+
+
           Swal.fire({
             position: "top-end",
             icon: "success",
             title: "Category created successfully!",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1500
           });
 
-      
-          this.Category.category_name = "";
-          this.isLoading = false;
-          this.isLoadingTitle = "Loading....";
+
+
+
+
+
+
+          console.log(response.data);
+          // Handle success
         })
-        .catch((error) => {
-          console.error("Error creating product:", error);
-          // Handle error if product creation fails
+        .catch(error => {
+          console.error(error);
+          // Handle error
         });
-    },
-
-    handleImageUpload(event) {
-      // Get the selected file from the input field
-      this.imageFile = event.target.files[0];
-    },
-  },
+    }
+  }
 
 
 
+
+
+
+  
     }
     
   </script>

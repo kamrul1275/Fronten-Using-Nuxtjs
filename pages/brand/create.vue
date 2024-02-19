@@ -39,7 +39,7 @@
             <div class="row mb-3">
               <label for="" class="col-sm-2 col-form-label">Photo</label>
               <div class="col-sm-10">
-                <input type="file" class="form-control" @change="handleImageUpload($event)"/>
+                <input type="file" id="brand_image" @change="onFileChange" accept="image/*" required>
               </div>
             </div>
             <!-- end row -->
@@ -48,7 +48,7 @@
   
 
           
-            <button class="btn btn-info" @click.prevent="submitHandle()">Submite</button>
+            <button class="btn btn-info" @click.prevent="saveBrand()">Submite</button>
   
             <!-- end row -->
           </div>
@@ -82,10 +82,10 @@ export default {
       Brand: {
 
         brand_name: "",
-        
+        brand_image: null,
       
       },
-      imageFile: null,
+      
 
       Swal: {},
       errors:{},
@@ -98,44 +98,42 @@ export default {
 
 
   methods: {
+    onFileChange(e) {
+      this.brand_image = e.target.files[0];
+    },
 
 
-
-    submitHandle() {
-      this.isLoading = true;
+    saveBrand() {
       let formData = new FormData();
-      formData.append("image", this.imageFile);
-      formData.append("brand_name", this.Brand.brand_name);
+      formData.append('brand_name', this.Brand.brand_name);
+      formData.append('brand_image', this.brand_image);
 
-      axios.post("http://127.0.0.1:8000/api/brands", formData)
-        .then((res) => {
+      axios.post('http://127.0.0.1:8000/api/brands', formData)
+        .then(response => {
+
+          
+          
           Swal.fire({
             position: "top-end",
             icon: "success",
             title: "Brand created successfully!",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1500
           });
-          this.Brand.brand_name = "";
-          this.imageFile = null;
-          this.isLoading = false;
+
+
+
+          console.log(response.data);
+          // Handle success
         })
-        .catch((error) => {
-          console.error("Error creating brand:", error);
-          // Handle error if brand creation fails
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-          });
-          this.isLoading = false;
+        .catch(error => {
+          console.error(error);
+          // Handle error
         });
-    },
-    handleImageUpload(event) {
-      // Get the selected file from the input field
-      this.imageFile = event.target.files[0];
-    },
-  }
+    }
+  }//end method
+
+
 }
   
 </script>

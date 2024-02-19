@@ -142,28 +142,56 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-bar-chart-line"></i>
-                        <span>Charts</span>
+                        <span>Order</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="charts-apex.html">Apex Charts</a></li>
-                        <li><a href="charts-chartjs.html">Chartjs Charts</a></li>
-                        <li><a href="charts-flot.html">Flot Charts</a></li>
-                        <li><a href="charts-knob.html">Jquery Knob Charts</a></li>
-                        <li><a href="charts-sparkline.html">Sparkline Charts</a></li>
+                        <li><nuxt-link to="/order/create">Create Order</nuxt-link></li>
+                        <li><nuxt-link to="/order">All Order</nuxt-link></li>
+              
                     </ul>
                 </li>
+
+
+
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-bar-chart-line"></i>
+                        <span>OrderIteam</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><nuxt-link to="/orderIteam/create">Create OrderIteam</nuxt-link></li>
+                        <li><nuxt-link to="/orderIteam">All OrderIteam</nuxt-link></li>
+              
+                    </ul>
+                </li>
+
+
 
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-brush-line"></i>
-                        <span>Icons</span>
+                        <span>Payment</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="icons-remix.html">Remix Icons</a></li>
-                        <li><a href="icons-materialdesign.html">Material Design</a></li>
-                        <li><a href="icons-dripicons.html">Dripicons</a></li>
-                        <li><a href="icons-fontawesome.html">Font awesome 5</a></li>
+                        <li><nuxt-link to="/payment/create">Create Payment</nuxt-link></li>
+                        <li><nuxt-link to="/payment">All Payment</nuxt-link></li>
+              
+                    </ul>
+                </li>
+
+
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-brush-line"></i>
+                        <span>Invoice</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="icons-remix.html">Create Invoice</a></li>
+                        <li><a href="icons-materialdesign.html">All Invoice</a></li>
+                       
                     </ul>
                 </li>
 
@@ -178,22 +206,7 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-share-line"></i>
-                        <span>Multi Level</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="javascript: void(0);">Level 1.1</a></li>
-                        <li><a href="javascript: void(0);" class="has-arrow">Level 1.2</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="javascript: void(0);">Level 2.1</a></li>
-                                <li><a href="javascript: void(0);">Level 2.2</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
+                
             </ul>
         </div>
         <!-- Sidebar -->
